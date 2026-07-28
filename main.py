@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from typing import Literal
 from fastapi.middleware.cors import CORSMiddleware
+from datetime import datetime
 
 model = joblib.load('Mental_Health_Model.pkl')
 top_countries = ['Other','India','USA','Canada','Australia','UK','Germany','Mexico','Turkey','France']
@@ -48,6 +49,16 @@ class PredictionResponse(BaseModel):
 def greet():
     return {'Welcome to Sheryians AI School Guys'}
 
+
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "service": "Mental Health Prediction API",
+        "model_loaded": model is not None,
+        "timestamp": datetime.utcnow().isoformat() + "Z"
+    }
 
 @app.post('/predict', response_model=PredictionResponse) #6.77777
 def predict(data: StudentData):
