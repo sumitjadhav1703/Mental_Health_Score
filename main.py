@@ -45,9 +45,15 @@ class PredictionResponse(BaseModel):
 
 
 
-@app.get('/')
+@app.get("/")
 def greet():
-    return {'Welcome to Sheryians AI School Guys'}
+    return {
+        "message": "Welcome to the Mental Health Score Prediction API",
+        "version": "1.0.0",
+        "status": "running",
+        "docs": "/docs",
+        "health": "/health"
+    }
 
 
 
