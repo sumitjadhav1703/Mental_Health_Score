@@ -222,7 +222,7 @@ The `/predict` endpoint expects JSON data strictly matching these `StudentData` 
 
 ## 🧠 Machine Learning Model
 
-The predictive engine uses a tuned **Random Forest Regression** model, built using `scikit-learn`.
+The predictive engine uses a **Random Forest Regression** model, built using `scikit-learn`.
 
 ### Preprocessing Pipeline
 The model implements a robust `ColumnTransformer` preprocessing pipeline tailored to different feature types:
@@ -234,7 +234,15 @@ The model implements a robust `ColumnTransformer` preprocessing pipeline tailore
 ### Model Optimization
 - An initial comparison was made between Linear Regression and a default Random Forest model.
 - Hyperparameter tuning was performed using `RandomizedSearchCV` (optimizing `n_estimators`, `max_depth`, `min_samples_split`, and `min_samples_leaf`).
-- The best performing estimator was selected and serialized into `Mental_Health_Model.pkl` for production use.
+- The notebook saves the **default** Random Forest pipeline (`rf_pipeline`) as `Mental_Health_Model.pkl`: it scored higher on the held-out test set than the tuned one.
+
+| Model | Test R² | Training R² | MAE | RMSE |
+| :--- | :---: | :---: | :---: | :---: |
+| Linear Regression | 0.740 | 0.724 | 0.536 | 0.676 |
+| **Random Forest (default) — saved** | **0.878** | 0.981 | **0.347** | **0.464** |
+| Random Forest (tuned) | 0.865 | 0.955 | 0.369 | 0.487 |
+
+The gap between training and test R² (0.981 vs 0.878) shows the default forest fits its training data far more closely than new data; tuning narrows the gap at a small cost on the test set.
 - The **Target Variable** is `Mental_Health_Score`, represented as a continuous float value.
 
 ---
