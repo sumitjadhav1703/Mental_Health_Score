@@ -47,7 +47,7 @@
 
 **Mental Health Signal** is a predictive analytics application designed to evaluate the impact of digital and lifestyle habits on student mental health.
 
-By analyzing metrics like daily screen time, social media platform usage, sleep hours, and physical activity, this project generates a predicted mental health score using a tuned Machine Learning model.
+By analyzing metrics like daily screen time, social media platform usage, sleep hours, and physical activity, this project generates a predicted mental health score using a Random Forest regression model.
 
 It is designed for students, educators, and wellness researchers to better understand how daily lifestyle and technological choices correlate with mental well-being.
 
@@ -81,7 +81,7 @@ Below are views of the application interface, demonstrating the input form and t
 Based on the implemented codebase, the application features:
 
 - **FastAPI REST API:** A robust, high-performance backend serving the ML model.
-- **Machine Learning Prediction:** Uses a tuned Random Forest regression model to generate mental health scores.
+- **Machine Learning Prediction:** Uses a Random Forest regression model to generate mental health scores.
 - **Input validation:** Strict runtime validation using Pydantic models for all demographic and behavioral inputs.
 - **Responsive UI:** Custom HTML/CSS frontend with a clean, user-friendly form interface.
 - **Health endpoint:** Live `/health` check route to monitor API status and model load state.
